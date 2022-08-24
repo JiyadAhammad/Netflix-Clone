@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/constants/colors/colors.dart';
+import 'package:netflix/presentation/search/widgets/serach_idle.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
@@ -19,16 +21,55 @@ class VideoListItem extends StatelessWidget {
               vertical: 10,
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                // Left side
                 CircleAvatar(
+                  backgroundColor: Colors.black.withOpacity(0.5),
                   radius: 30,
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.volume_off,
+                      color: kwhite,
+                      size: 30,
                     ),
                   ),
+                ),
+
+                // Right side
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                          "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg",
+                        ),
+                      ),
+                    ),
+                    VideoActionWidgets(
+                      actionIcon: Icons.emoji_emotions,
+                      actionTitle: 'LOL',
+                    ),
+                    VideoActionWidgets(
+                      actionIcon: Icons.add,
+                      actionTitle: 'My List',
+                    ),
+                    VideoActionWidgets(
+                      actionIcon: Icons.share,
+                      actionTitle: 'Share',
+                    ),
+                    VideoActionWidgets(
+                      actionIcon: Icons.play_arrow,
+                      actionTitle: 'Play',
+                    ),
+                  ],
                 )
               ],
             ),
@@ -51,6 +92,42 @@ class VideoListItem extends StatelessWidget {
         //   ),
         // )
       ],
+    );
+  }
+}
+
+class VideoActionWidgets extends StatelessWidget {
+  final IconData actionIcon;
+  final String actionTitle;
+  const VideoActionWidgets({
+    Key? key,
+    required this.actionIcon,
+    required this.actionTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 10,
+      ),
+      child: Column(
+        children: [
+          Icon(
+            actionIcon,
+            color: kwhite,
+            size: 30,
+          ),
+          Text(
+            actionTitle,
+            style: const TextStyle(
+              color: ktextwhite,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
