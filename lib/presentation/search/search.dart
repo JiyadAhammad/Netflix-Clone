@@ -31,7 +31,7 @@ class SearchScreen extends StatelessWidget {
                 style: const TextStyle(color: ktextwhite),
               ),
               kheight20,
-              // const Expanded(child: SearchIdleWidgets()),
+              const Expanded(child: SearchIdleWidgets()),
               const Expanded(child: SearchResultWidget()),
             ],
           ),

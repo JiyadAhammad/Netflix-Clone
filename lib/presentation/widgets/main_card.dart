@@ -9,8 +9,10 @@ class MainCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230,
-      width: 150,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      // padding: EdgeInsets.symmetric(vertical: 50),
+      height: 250,
+      width: 130,
       // color: Colors.green,
       decoration: BoxDecoration(
         image: const DecorationImage(
