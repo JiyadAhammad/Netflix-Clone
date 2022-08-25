@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/constants/constants_widgets.dart';
-import 'package:netflix/presentation/search/widgets/searchtitle.dart';
-import 'package:netflix/presentation/search/widgets/serach_idle.dart';
+import 'package:netflix/presentation/widgets/maintitle.dart';
 
 const imgageuri =
     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg';
@@ -14,8 +13,8 @@ class SearchResultWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SearchTileWidget(
-          searchTitle: 'Movies & Tv',
+        const MainTitleWidgets(
+          mainTitle: 'Movies & Tv',
         ),
         kheight,
         Expanded(

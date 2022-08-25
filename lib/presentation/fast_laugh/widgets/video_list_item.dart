@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/constants/colors/colors.dart';
-import 'package:netflix/presentation/search/widgets/serach_idle.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
-  const VideoListItem({Key? key, required this.index}) : super(key: key);
+  const VideoListItem({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class VideoListItem extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
         // Positioned(
         //   bottom: 0,
         //   left: 0,
