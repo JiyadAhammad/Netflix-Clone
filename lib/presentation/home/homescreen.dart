@@ -178,10 +178,14 @@ class HomeScreen extends StatelessWidget {
 class IconsInHome extends StatelessWidget {
   final IconData icon;
   final String buttonName;
+  final double iconSize;
+  final double textSize;
   const IconsInHome({
     Key? key,
     required this.icon,
     required this.buttonName,
+    this.iconSize = 30,
+    this.textSize = 16,
   }) : super(key: key);
 
   @override
@@ -191,13 +195,13 @@ class IconsInHome extends StatelessWidget {
         Icon(
           icon,
           color: kwhite,
-          size: 30,
+          size: iconSize,
         ),
         Text(
           buttonName,
-          style: const TextStyle(
+          style: TextStyle(
             color: kwhite,
-            fontSize: 16,
+            fontSize: textSize,
           ),
         )
       ],
