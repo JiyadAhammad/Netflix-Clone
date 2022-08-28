@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/constants_widgets.dart';
+import 'package:netflix/presentation/home/homescreen.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/coming_soon_tab.dart';
+import 'package:netflix/presentation/new_and_hot/widgets/everyone_watching_widget.dart';
+import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class HotandNewScreen extends StatelessWidget {
   const HotandNewScreen({Key? key}) : super(key: key);
@@ -87,6 +90,12 @@ class HotandNewScreen extends StatelessWidget {
   }
 
   Widget _buildEverythingWatch() {
-    return SizedBox();
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: 5,
+      itemBuilder: (BuildContext context, int index) {
+        return const EveryoneWatchingWidget();
+      },
+    );
   }
 }
