@@ -7,6 +7,7 @@ part 'downloads_model.g.dart';
 @freezed
 class Downloads with _$Downloads {
   const factory Downloads({
+    // ignore: invalid_annotation_target
     @JsonKey(name: "poster_path") required String? posterPath,
   }) = _Downloads;
 

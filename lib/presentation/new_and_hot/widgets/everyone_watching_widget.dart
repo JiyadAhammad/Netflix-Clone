@@ -35,7 +35,9 @@ class EveryoneWatchingWidget extends StatelessWidget {
           ),
         ),
         kheight50,
-        const VideoWidget(videoImage: 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg'),
+        const VideoWidget(
+            videoImage:
+                'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg'),
         kheight20,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

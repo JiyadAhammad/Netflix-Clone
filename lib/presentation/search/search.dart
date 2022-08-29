@@ -32,7 +32,7 @@ class SearchScreen extends StatelessWidget {
               ),
               kheight20,
               const Expanded(child: SearchIdleWidgets()),
-              const Expanded(child: SearchResultWidget()),
+              // const Expanded(child: SearchResultWidget()),
             ],
           ),
         ),

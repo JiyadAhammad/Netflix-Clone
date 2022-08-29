@@ -1,6 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/downloads/downloads_bloc.dart';
+import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/widgets/appbar_widget.dart';
@@ -10,7 +12,7 @@ class DownloadsScreen extends StatelessWidget {
 
   final wigetlist = [
     const _SmartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -62,15 +64,22 @@ class _SmartDownloads extends StatelessWidget {
 }
 
 class Section2 extends StatelessWidget {
-  Section2({Key? key}) : super(key: key);
-  final List imgageList = [
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg',
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/stTEycfG9928HYGEISBFaG1ngjM.jpg',
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hIkKM1nlzk8DThFT4vxgW1KoofL.jpg',
-  ];
+  const Section2({Key? key}) : super(key: key);
+  // final List imgageList = [
+  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg',
+  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/stTEycfG9928HYGEISBFaG1ngjM.jpg',
+  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hIkKM1nlzk8DThFT4vxgW1KoofL.jpg',
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context).add(
+        const DownloadsEvent.getDownloadsImage(),
+      );
+    });
+    // BlocProvider.of<DownloadsBloc>(context)
+    //     .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -90,38 +99,57 @@ class Section2 extends StatelessWidget {
           style: TextStyle(color: kgrey, fontSize: 15),
         ),
         kheight,
-        SizedBox(
-          width: size.width,
-          // height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.grey.withOpacity(0.5),
-                radius: size.width * 0.35,
+        BlocBuilder<DownloadsBloc, DownloadState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              // height: size.width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.grey.withOpacity(0.5),
+                    radius: size.width * 0.35,
+                  ),
+                  state.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : DownlodImageWidget(
+                          borderRadius: 5,
+                          size: Size(size.width * 0.38, size.width * 0.5),
+                          angle: 20,
+                          margin: const EdgeInsets.only(left: 130, bottom: 15),
+                          imgageList:
+                              '$kImageURL${state.downloads[0].posterPath}',
+                        ),
+                  state.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : DownlodImageWidget(
+                          borderRadius: 5,
+                          size: Size(size.width * 0.38, size.width * 0.5),
+                          angle: -20,
+                          margin: const EdgeInsets.only(bottom: 15, right: 130),
+                          imgageList:
+                              '$kImageURL${state.downloads[1].posterPath}',
+                        ),
+                  state.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : DownlodImageWidget(
+                          borderRadius: 8,
+                          size: Size(size.width * 0.4, size.width * 0.58),
+                          margin: const EdgeInsets.only(top: 20),
+                          imgageList:
+                              '$kImageURL${state.downloads[2].posterPath}',
+                        ),
+                ],
               ),
-              DownlodImageWidget(
-                borderRadius: 5,
-                size: Size(size.width * 0.38, size.width * 0.5),
-                angle: 20,
-                margin: const EdgeInsets.only(left: 130, bottom: 15),
-                imgageList: imgageList[0],
-              ),
-              DownlodImageWidget(
-                borderRadius: 5,
-                size: Size(size.width * 0.38, size.width * 0.5),
-                angle: -20,
-                margin: const EdgeInsets.only(bottom: 15, right: 130),
-                imgageList: imgageList[1],
-              ),
-              DownlodImageWidget(
-                borderRadius: 8,
-                size: Size(size.width * 0.4, size.width * 0.58),
-                margin: const EdgeInsets.only(top: 20),
-                imgageList: imgageList[2],
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

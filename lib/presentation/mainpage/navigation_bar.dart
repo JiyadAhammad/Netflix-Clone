@@ -13,7 +13,7 @@ class NavigatonBarScreen extends StatelessWidget {
     const HotandNewScreen(),
     const FastLaughScreen(),
     const SearchScreen(),
-     DownloadsScreen(),
+    DownloadsScreen(),
   ];
 
   @override

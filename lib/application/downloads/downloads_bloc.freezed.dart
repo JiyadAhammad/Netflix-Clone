@@ -169,7 +169,7 @@ abstract class _GetDownloadsImage implements DownloadsEvent {
 /// @nodoc
 mixin _$DownloadState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<Downloads>? get downloads => throw _privateConstructorUsedError;
+  List<Downloads> get downloads => throw _privateConstructorUsedError;
   Option<Either<MainFailure, List<Downloads>>>
       get downloadsFailureorSucessOption => throw _privateConstructorUsedError;
 
@@ -185,7 +185,7 @@ abstract class $DownloadStateCopyWith<$Res> {
       _$DownloadStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      List<Downloads>? downloads,
+      List<Downloads> downloads,
       Option<Either<MainFailure, List<Downloads>>>
           downloadsFailureorSucessOption});
 }
@@ -213,7 +213,7 @@ class _$DownloadStateCopyWithImpl<$Res>
       downloads: downloads == freezed
           ? _value.downloads
           : downloads // ignore: cast_nullable_to_non_nullable
-              as List<Downloads>?,
+              as List<Downloads>,
       downloadsFailureorSucessOption: downloadsFailureorSucessOption == freezed
           ? _value.downloadsFailureorSucessOption
           : downloadsFailureorSucessOption // ignore: cast_nullable_to_non_nullable
@@ -231,7 +231,7 @@ abstract class _$$_DownloadStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      List<Downloads>? downloads,
+      List<Downloads> downloads,
       Option<Either<MainFailure, List<Downloads>>>
           downloadsFailureorSucessOption});
 }
@@ -261,7 +261,7 @@ class __$$_DownloadStateCopyWithImpl<$Res>
       downloads: downloads == freezed
           ? _value._downloads
           : downloads // ignore: cast_nullable_to_non_nullable
-              as List<Downloads>?,
+              as List<Downloads>,
       downloadsFailureorSucessOption: downloadsFailureorSucessOption == freezed
           ? _value.downloadsFailureorSucessOption
           : downloadsFailureorSucessOption // ignore: cast_nullable_to_non_nullable
@@ -275,19 +275,17 @@ class __$$_DownloadStateCopyWithImpl<$Res>
 class _$_DownloadState implements _DownloadState {
   const _$_DownloadState(
       {required this.isLoading,
-      final List<Downloads>? downloads,
+      required final List<Downloads> downloads,
       required this.downloadsFailureorSucessOption})
       : _downloads = downloads;
 
   @override
   final bool isLoading;
-  final List<Downloads>? _downloads;
+  final List<Downloads> _downloads;
   @override
-  List<Downloads>? get downloads {
-    final value = _downloads;
-    if (value == null) return null;
+  List<Downloads> get downloads {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_downloads);
   }
 
   @override
@@ -328,14 +326,14 @@ class _$_DownloadState implements _DownloadState {
 abstract class _DownloadState implements DownloadState {
   const factory _DownloadState(
       {required final bool isLoading,
-      final List<Downloads>? downloads,
+      required final List<Downloads> downloads,
       required final Option<Either<MainFailure, List<Downloads>>>
           downloadsFailureorSucessOption}) = _$_DownloadState;
 
   @override
   bool get isLoading;
   @override
-  List<Downloads>? get downloads;
+  List<Downloads> get downloads;
   @override
   Option<Either<MainFailure, List<Downloads>>>
       get downloadsFailureorSucessOption;

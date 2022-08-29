@@ -52,7 +52,9 @@ class ComingSoonTab extends StatelessWidget {
           height: 500,
           child: Column(
             children: [
-             const VideoWidget(videoImage: 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/fIKc2cR1GglarzChMAb4BOP1qHP.jpg'),
+              const VideoWidget(
+                  videoImage:
+                      'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/fIKc2cR1GglarzChMAb4BOP1qHP.jpg'),
               kheight20,
               Row(
                 children: [
@@ -143,5 +145,3 @@ class ComingSoonTab extends StatelessWidget {
     );
   }
 }
-
-

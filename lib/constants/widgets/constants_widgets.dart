@@ -6,7 +6,7 @@ const kheight20 = SizedBox(height: 20);
 const kwidth20 = SizedBox(width: 20);
 const kheight50 = SizedBox(height: 50);
 
-//Radius 
+//Radius
 final BorderRadius kradius10 = BorderRadius.circular(10);
 final BorderRadius kradius30 = BorderRadius.circular(30);
 
