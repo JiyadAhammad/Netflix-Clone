@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/constants/colors/colors.dart';
+import 'package:netflix/domain/core/dependency_injection/injectable.dart';
 import 'package:netflix/presentation/mainpage/navigation_bar.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureInjection();
   runApp(const MyApp());
 }
 
