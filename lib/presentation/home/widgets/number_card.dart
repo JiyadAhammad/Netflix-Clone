@@ -1,6 +1,6 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix/constants/constants_widgets.dart';
+import 'package:netflix/constants/widgets/constants_widgets.dart';
 
 class NumberCardWidget extends StatelessWidget {
   final int index;

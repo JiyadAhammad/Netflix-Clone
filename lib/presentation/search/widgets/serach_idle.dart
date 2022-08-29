@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix/constants/colors/colors.dart';
-import 'package:netflix/constants/constants_widgets.dart';
+import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/widgets/maintitle.dart';
 
 const imageUri =

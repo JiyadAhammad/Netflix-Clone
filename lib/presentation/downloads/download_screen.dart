@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:netflix/constants/colors/colors.dart';
-import 'package:netflix/constants/constants_widgets.dart';
+import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/widgets/appbar_widget.dart';
 
 class DownloadsScreen extends StatelessWidget {
