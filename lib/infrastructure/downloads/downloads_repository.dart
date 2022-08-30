@@ -28,12 +28,13 @@ class DownloadsRepository implements IDownloadRepo {
         //     ),
         //   );
         // }
+        // log(downloadList.toString());
         return right(downloadList);
       } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
       return const Left(MainFailure.clientFailure());
     }
   }

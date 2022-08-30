@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/downloads/downloads_bloc.dart';
+import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/domain/core/dependency_injection/injectable.dart';
 import 'package:netflix/presentation/mainpage/navigation_bar.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) {
           return getIt<DownloadsBloc>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<SearchBloc>();
         }),
       ],
       child: MaterialApp(

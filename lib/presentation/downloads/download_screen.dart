@@ -20,23 +20,26 @@ class DownloadsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: WidgetAppBar(
-            title: "Downloads",
-          ),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: WidgetAppBar(
+          title: "Downloads",
         ),
-        // body:
-        body: ListView.separated(
-            padding: const EdgeInsets.only(
-              right: 15,
-              left: 15,
-            ),
-            itemBuilder: (ctx, index) => wigetlist[index],
-            separatorBuilder: (ctx, index) => const SizedBox(
-                  height: 60,
-                ),
-            itemCount: wigetlist.length));
+      ),
+      // body:
+      body: ListView.separated(
+        shrinkWrap: true,
+        padding: const EdgeInsets.only(
+          right: 15,
+          left: 15,
+        ),
+        itemBuilder: (ctx, index) => wigetlist[index],
+        separatorBuilder: (ctx, index) => const SizedBox(
+          height: 60,
+        ),
+        itemCount: wigetlist.length,
+      ),
+    );
   }
 }
 
@@ -101,6 +104,11 @@ class Section2 extends StatelessWidget {
         kheight,
         BlocBuilder<DownloadsBloc, DownloadState>(
           builder: (context, state) {
+            if (state.isLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return SizedBox(
               width: size.width,
               // height: size.width,
@@ -111,23 +119,19 @@ class Section2 extends StatelessWidget {
                     backgroundColor: Colors.grey.withOpacity(0.5),
                     radius: size.width * 0.35,
                   ),
-                  state.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : DownlodImageWidget(
-                          borderRadius: 5,
-                          size: Size(size.width * 0.38, size.width * 0.5),
-                          angle: 20,
-                          margin: const EdgeInsets.only(left: 130, bottom: 15),
-                          imgageList:
-                              '$kImageURL${state.downloads[0].posterPath}',
-                        ),
-                  state.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : DownlodImageWidget(
+                  DownlodImageWidget(
+                    borderRadius: 5,
+                    size: Size(size.width * 0.38, size.width * 0.5),
+                    angle: 20,
+                    margin: const EdgeInsets.only(left: 130, bottom: 15),
+                    imgageList: '$kImageURL${state.downloads[0].posterPath}',
+                  ),
+                  // state.isLoading
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       )
+                  //     : 
+                      DownlodImageWidget(
                           borderRadius: 5,
                           size: Size(size.width * 0.38, size.width * 0.5),
                           angle: -20,
@@ -135,11 +139,12 @@ class Section2 extends StatelessWidget {
                           imgageList:
                               '$kImageURL${state.downloads[1].posterPath}',
                         ),
-                  state.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : DownlodImageWidget(
+                  // state.isLoading
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       )
+                  //     : 
+                      DownlodImageWidget(
                           borderRadius: 8,
                           size: Size(size.width * 0.4, size.width * 0.58),
                           margin: const EdgeInsets.only(top: 20),
