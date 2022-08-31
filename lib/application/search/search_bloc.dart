@@ -21,6 +21,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) : super(SearchState.initial()) {
     // >>>idle state<<<
     on<Initialize>((event, emit) async {
+      if (state.ideLisst.isNotEmpty) {
+        emit(
+         SearchState(
+          searchResultList: [],
+          ideLisst: state.ideLisst,
+          isLodinng: false,
+          isError: false,
+        ),
+      );
+        return;
+      }
       emit(
         const SearchState(
           searchResultList: [],

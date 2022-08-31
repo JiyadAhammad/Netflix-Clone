@@ -17,33 +17,44 @@ part 'downloads_bloc.freezed.dart';
 class DownloadsBloc extends Bloc<DownloadsEvent, DownloadState> {
   final IDownloadRepo downloadRepo;
   DownloadsBloc(this.downloadRepo) : super(DownloadState.inital()) {
-    on<_GetDownloadsImage>((event, emit) async {
-      emit(
-        state.copyWith(
-          isLoading: true,
-          downloadsFailureorSucessOption: none(),
-        ),
-      );
-      final Either<MainFailure, List<Downloads>> downloadsOption =
-          await downloadRepo.getDownloadsImage();
-      log(downloadsOption.toString());
-      emit(
-        downloadsOption.fold(
-          (failure) => state.copyWith(
-            isLoading: false,
-            downloadsFailureorSucessOption: Some(
-              left(failure),
+    on<_GetDownloadsImage>(
+      (event, emit) async {
+        if (state.downloads.isNotEmpty) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              downloadsFailureorSucessOption: none(),
+            ),
+          );
+          return;
+        }
+        emit(
+          state.copyWith(
+            isLoading: true,
+            downloadsFailureorSucessOption: none(),
+          ),
+        );
+        final Either<MainFailure, List<Downloads>> downloadsOption =
+            await downloadRepo.getDownloadsImage();
+        log(downloadsOption.toString());
+        emit(
+          downloadsOption.fold(
+            (failure) => state.copyWith(
+              isLoading: false,
+              downloadsFailureorSucessOption: Some(
+                left(failure),
+              ),
+            ),
+            (sucess) => state.copyWith(
+              isLoading: false,
+              downloads: sucess,
+              downloadsFailureorSucessOption: Some(
+                right(sucess),
+              ),
             ),
           ),
-          (sucess) => state.copyWith(
-            isLoading: false,
-            downloads: sucess,
-            downloadsFailureorSucessOption: Some(
-              right(sucess),
-            ),
-          ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
