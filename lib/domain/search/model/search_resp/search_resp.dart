@@ -29,7 +29,7 @@ class SearchResultData {
   @JsonKey(name: 'poster_path')
   String? posterPath;
 
-  String get posterImageUrl => '$kImageURL$posterImageUrl';
+  String get posterImageUrl => '$kImageURL$posterPath';
   SearchResultData({
         this.id,
         this.originalTitle,

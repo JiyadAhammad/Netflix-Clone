@@ -4,11 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
+import 'package:netflix/domain/debounce/debounce.dart';
 import 'package:netflix/presentation/search/widgets/search_result.dart';
 import 'package:netflix/presentation/search/widgets/serach_idle.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  SearchScreen({Key? key}) : super(key: key);
+
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +38,17 @@ class SearchScreen extends StatelessWidget {
                 ),
                 style: const TextStyle(color: ktextwhite),
                 onChanged: (value) {
-                  BlocProvider.of<SearchBloc>(context).add(
-                    SearchMovie(
-                      movieQuery: value,
-                    ),
-                  );
+                  if (value.isEmpty) {
+                    // return const SearchIdleWidgets();
+                    return;
+                  }
+                  _debouncer.run(() {
+                    BlocProvider.of<SearchBloc>(context).add(
+                      SearchMovie(
+                        movieQuery: value,
+                      ),
+                    );
+                  });
                 },
               ),
               kheight20,
