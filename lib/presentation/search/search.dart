@@ -12,7 +12,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) { 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<SearchBloc>(context).add(const Initialize());
     });
     return Scaffold(
@@ -34,9 +34,24 @@ class SearchScreen extends StatelessWidget {
                   color: kgrey,
                 ),
                 style: const TextStyle(color: ktextwhite),
+                onChanged: (value) {
+                  BlocProvider.of<SearchBloc>(context).add(
+                    SearchMovie(
+                      movieQuery: value,
+                    ),
+                  );
+                },
               ),
               kheight20,
-              const Expanded(child: SearchIdleWidgets()),
+              Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  if (state.searchResultList.isEmpty) {
+                    return const SearchIdleWidgets();
+                  } else {
+                    return const SearchResultWidget();
+                  }
+                },
+              )),
               // const Expanded(child: SearchResultWidget()),
             ],
           ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/widgets/maintitle.dart';
 
-const imgageuri =
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg';
+// const imgageuri =
+//     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg';
 
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({Key? key}) : super(key: key);
@@ -18,18 +20,25 @@ class SearchResultWidget extends StatelessWidget {
         ),
         kheight,
         Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 3.5 / 5,
-            children: List.generate(
-              20,
-              (index) {
-                return const MainMovieCardLidtItem();
-              },
-            ),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              return GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 1/1.4,
+                children: List.generate(
+                  state.searchResultList.length,
+                  (index) {
+                    final movie = state.searchResultList[index];
+                    return MainMovieCardLidtItem(
+                      imageUri: movie.posterImageUrl,
+                    );
+                  },
+                ),
+              );
+            },
           ),
         )
       ],
@@ -38,15 +47,19 @@ class SearchResultWidget extends StatelessWidget {
 }
 
 class MainMovieCardLidtItem extends StatelessWidget {
-  const MainMovieCardLidtItem({Key? key}) : super(key: key);
+  final String imageUri;
+  const MainMovieCardLidtItem({
+    Key? key,
+    required this.imageUri,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(
-            imgageuri,
+            imageUri,
           ),
           fit: BoxFit.fill,
         ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -23,13 +25,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<Initialize>((event, emit) async {
       if (state.ideLisst.isNotEmpty) {
         emit(
-         SearchState(
-          searchResultList: [],
-          ideLisst: state.ideLisst,
-          isLodinng: false,
-          isError: false,
-        ),
-      );
+          SearchState(
+            searchResultList: [],
+            ideLisst: state.ideLisst,
+            isLodinng: false,
+            isError: false,
+          ),
+        );
         return;
       }
       emit(
@@ -66,9 +68,41 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       );
     });
     // >>>Search result state<<<
-    on<SearchMovie>((event, emit) {
-      //>>> serach api call <<<
-      _iSearchRepo.searchMovies(movieQuery: event.movieQuery);
-    });
+    on<SearchMovie>(
+      (event, emit) async {
+        //>>> serach api call <<<
+        // log('${event.movieQuery}');
+        emit(
+          const SearchState(
+            searchResultList: [],
+            ideLisst: [],
+            isLodinng: true,
+            isError: false,
+          ),
+        );
+        final result =
+            await _iSearchRepo.searchMovies(movieQuery: event.movieQuery);
+        // print('$result search reslt ');
+        final _state = result.fold(
+          (MainFailure f) {
+            return const SearchState(
+              searchResultList: [],
+              ideLisst: [],
+              isLodinng: false,
+              isError: true,
+            );
+          },
+          (SearchResp r) {
+            return SearchState(
+              searchResultList: r.results,
+              ideLisst: [],
+              isLodinng: false,
+              isError: false,
+            );
+          },
+        );
+        emit(_state);
+      },
+    );
   }
 }

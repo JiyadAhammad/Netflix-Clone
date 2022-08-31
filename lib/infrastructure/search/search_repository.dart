@@ -21,6 +21,7 @@ class SearchRepository implements ISearchRepo {
           'query': movieQuery,
         },
       );
+      log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final searchResult = SearchResp.fromJson(response.data);
         // log(searchResult.toString());
