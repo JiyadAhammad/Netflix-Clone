@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
+import 'package:netflix/domain/downlods/models/downloads_model.dart';
+import 'package:netflix/presentation/fast_laugh/fast_laugh.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
@@ -10,6 +13,7 @@ class VideoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final posterpath = VideoListItemInherit.of(context)?.movieData.posterPath;
     return Stack(
       children: [
         Container(
@@ -43,31 +47,33 @@ class VideoListItem extends StatelessWidget {
                 // Right side
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 10,
                       ),
                       child: CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage(
-                          "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg",
-                        ),
+                        backgroundImage: posterpath == null
+                            ? null
+                            : NetworkImage(
+                                '$kImageURL$posterpath',
+                              ),
                       ),
                     ),
-                    VideoActionWidgets(
+                    const VideoActionWidgets(
                       actionIcon: Icons.emoji_emotions,
                       actionTitle: 'LOL',
                     ),
-                    VideoActionWidgets(
+                    const VideoActionWidgets(
                       actionIcon: Icons.add,
                       actionTitle: 'My List',
                     ),
-                    VideoActionWidgets(
+                    const VideoActionWidgets(
                       actionIcon: Icons.share,
                       actionTitle: 'Share',
                     ),
-                    VideoActionWidgets(
+                    const VideoActionWidgets(
                       actionIcon: Icons.play_arrow,
                       actionTitle: 'Play',
                     ),

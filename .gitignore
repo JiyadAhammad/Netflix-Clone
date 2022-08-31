@@ -48,3 +48,4 @@ app.*.map.json
 
 # apikey
 lib/infrastructure/api_key.dart
+
