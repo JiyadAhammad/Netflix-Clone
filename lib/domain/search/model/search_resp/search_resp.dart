@@ -31,10 +31,10 @@ class SearchResultData {
 
   String get posterImageUrl => '$kImageURL$posterPath';
   SearchResultData({
-        this.id,
-        this.originalTitle,
-        this.posterPath,
-      });
+    this.id,
+    this.originalTitle,
+    this.posterPath,
+  });
 
   factory SearchResultData.fromJson(Map<String, dynamic> json) {
     return _$SearchResultDataFromJson(json);

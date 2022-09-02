@@ -130,27 +130,25 @@ class Section2 extends StatelessWidget {
                   //     ? const Center(
                   //         child: CircularProgressIndicator(),
                   //       )
-                  //     : 
-                      DownlodImageWidget(
-                          borderRadius: 5,
-                          size: Size(size.width * 0.38, size.width * 0.5),
-                          angle: -20,
-                          margin: const EdgeInsets.only(bottom: 15, right: 130),
-                          imgageList:
-                              '$kImageURL${state.downloads[1].posterPath}',
-                        ),
+                  //     :
+                  DownlodImageWidget(
+                    borderRadius: 5,
+                    size: Size(size.width * 0.38, size.width * 0.5),
+                    angle: -20,
+                    margin: const EdgeInsets.only(bottom: 15, right: 130),
+                    imgageList: '$kImageURL${state.downloads[1].posterPath}',
+                  ),
                   // state.isLoading
                   //     ? const Center(
                   //         child: CircularProgressIndicator(),
                   //       )
-                  //     : 
-                      DownlodImageWidget(
-                          borderRadius: 8,
-                          size: Size(size.width * 0.4, size.width * 0.58),
-                          margin: const EdgeInsets.only(top: 20),
-                          imgageList:
-                              '$kImageURL${state.downloads[2].posterPath}',
-                        ),
+                  //     :
+                  DownlodImageWidget(
+                    borderRadius: 8,
+                    size: Size(size.width * 0.4, size.width * 0.58),
+                    margin: const EdgeInsets.only(top: 20),
+                    imgageList: '$kImageURL${state.downloads[2].posterPath}',
+                  ),
                 ],
               ),
             );

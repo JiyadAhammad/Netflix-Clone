@@ -70,14 +70,14 @@ class VideoListItem extends StatelessWidget {
                       valueListenable: likedVideoIdNotifier,
                       builder: (BuildContext ctx, Set<int> newLikedVideo,
                           Widget? _) {
-                        final _index = index;
-                        if (newLikedVideo.contains(_index)) {
+                        final _indexLol = index;
+                        if (newLikedVideo.contains(_indexLol)) {
                           return GestureDetector(
                             onTap: () {
-                              likedVideoIdNotifier.value.remove(_index);
+                              likedVideoIdNotifier.value.remove(_indexLol);
                               likedVideoIdNotifier.notifyListeners();
                               // BlocProvider.of<FastLaughBloc>(context).add(
-                              //   LikedVideo(id: _index),
+                              //   LikedVideo(id: _indexLol),
                               // );
                             },
                             child: const VideoActionWidgets(
@@ -88,10 +88,10 @@ class VideoListItem extends StatelessWidget {
                         }
                         return GestureDetector(
                           onTap: () {
-                            likedVideoIdNotifier.value.add(_index);
+                            likedVideoIdNotifier.value.add(_indexLol);
                             likedVideoIdNotifier.notifyListeners();
                             // BlocProvider.of<FastLaughBloc>(context).add(
-                            //   UnLikedVideo(id: _index),
+                            //   UnLikedVideo(id: _indexLol),
                             // );
                           },
                           child: const VideoActionWidgets(
