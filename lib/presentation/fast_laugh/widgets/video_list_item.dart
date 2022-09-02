@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
@@ -65,9 +66,40 @@ class VideoListItem extends StatelessWidget {
                               ),
                       ),
                     ),
-                    const VideoActionWidgets(
-                      actionIcon: Icons.emoji_emotions,
-                      actionTitle: 'LOL',
+                    ValueListenableBuilder(
+                      valueListenable: likedVideoIdNotifier,
+                      builder: (BuildContext ctx, Set<int> newLikedVideo,
+                          Widget? _) {
+                        final _index = index;
+                        if (newLikedVideo.contains(_index)) {
+                          return GestureDetector(
+                            onTap: () {
+                              likedVideoIdNotifier.value.remove(_index);
+                              likedVideoIdNotifier.notifyListeners();
+                              // BlocProvider.of<FastLaughBloc>(context).add(
+                              //   LikedVideo(id: _index),
+                              // );
+                            },
+                            child: const VideoActionWidgets(
+                              actionIcon: Icons.favorite,
+                              actionTitle: 'Liked',
+                            ),
+                          );
+                        }
+                        return GestureDetector(
+                          onTap: () {
+                            likedVideoIdNotifier.value.add(_index);
+                            likedVideoIdNotifier.notifyListeners();
+                            // BlocProvider.of<FastLaughBloc>(context).add(
+                            //   UnLikedVideo(id: _index),
+                            // );
+                          },
+                          child: const VideoActionWidgets(
+                            actionIcon: Icons.emoji_emotions,
+                            actionTitle: 'LOL',
+                          ),
+                        );
+                      },
                     ),
                     const VideoActionWidgets(
                       actionIcon: Icons.add,
