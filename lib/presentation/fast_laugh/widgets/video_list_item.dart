@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';

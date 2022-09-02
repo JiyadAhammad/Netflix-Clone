@@ -5,16 +5,21 @@ import 'package:netflix/presentation/home/homescreen.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class ComingSoonTab extends StatelessWidget {
+  final String id;
   final String month;
-  final int date;
+  final String day;
   final String filmName;
-  final String realiseDate;
+  final String posterPath;
+  final String description;
+
   const ComingSoonTab({
     Key? key,
+    required this.id,
     required this.month,
-    required this.date,
+    required this.day,
     required this.filmName,
-    required this.realiseDate,
+    required this.posterPath,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -36,7 +41,7 @@ class ComingSoonTab extends StatelessWidget {
                 ),
               ),
               Text(
-                "$date",
+                day,
                 style: const TextStyle(
                   fontSize: 20,
                   letterSpacing: 2,
@@ -52,19 +57,21 @@ class ComingSoonTab extends StatelessWidget {
           height: 500,
           child: Column(
             children: [
-              const VideoWidget(
-                  videoImage:
-                      'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/fIKc2cR1GglarzChMAb4BOP1qHP.jpg'),
+              VideoWidget(videoImage: posterPath),
               kheight20,
               Row(
                 children: [
-                  Text(
-                    filmName,
-                    style: const TextStyle(
-                      letterSpacing: -3,
-                      color: ktextwhite,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
+                  Expanded(
+                    child: Text(
+                      filmName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        letterSpacing: -3,
+                        color: ktextwhite,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
                     ),
                   ),
 
@@ -108,18 +115,18 @@ class ComingSoonTab extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  realiseDate,
+                  filmName,
                   style: const TextStyle(
                     color: kwhite,
                   ),
                 ),
               ),
               kheight,
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'The next 365 days',
-                  style: TextStyle(
+                  'The next $day $month',
+                  style: const TextStyle(
                     color: kwhite,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -127,11 +134,13 @@ class ComingSoonTab extends StatelessWidget {
                 ),
               ),
               kheight,
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  '''Lorem Ipsum is simply dummy jerjif fjf fjjf xcjkdfv  text  of thl ovrem Ipsum hao fahjf adha hsd fk hafhfhjks dfh skl fhsdfhkah''',
-                  style: TextStyle(
+                  description,
+                  maxLines: 6,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
                     color: kgrey,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,

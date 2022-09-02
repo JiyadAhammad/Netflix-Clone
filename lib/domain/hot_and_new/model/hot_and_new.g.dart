@@ -9,7 +9,7 @@ part of 'hot_and_new.dart';
 HotAndNew _$HotAndNewFromJson(Map<String, dynamic> json) => HotAndNew(
       page: json['page'] as int?,
       results: (json['results'] as List<dynamic>?)
-              ?.map((e) => HotAndNew.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => HotAndNewData.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

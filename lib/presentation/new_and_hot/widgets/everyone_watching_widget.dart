@@ -5,8 +5,14 @@ import 'package:netflix/presentation/home/homescreen.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class EveryoneWatchingWidget extends StatelessWidget {
+  final String filmName;
+  final String posterPath;
+  final String description;
   const EveryoneWatchingWidget({
     Key? key,
+    required this.filmName,
+    required this.posterPath,
+    required this.description,
   }) : super(key: key);
 
   @override

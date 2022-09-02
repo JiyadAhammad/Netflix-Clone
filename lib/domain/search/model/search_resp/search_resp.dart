@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netflix/constants/baseurl/base_url.dart';
 part 'search_resp.g.dart';
