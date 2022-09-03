@@ -183,6 +183,7 @@ class EveryOneWatchingWidget extends StatelessWidget {
           );
         } else {
           return ListView.builder(
+            padding: const EdgeInsets.all(10),
             itemCount: state.everyOneIsWatching.length,
             itemBuilder: (context, index) {
               final eMovies = state.everyOneIsWatching[index];

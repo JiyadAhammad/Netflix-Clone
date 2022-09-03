@@ -34,6 +34,8 @@ class EveryoneWatchingTab extends StatelessWidget {
         kheight,
         Text(
           description,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: kgrey,
             fontWeight: FontWeight.bold,

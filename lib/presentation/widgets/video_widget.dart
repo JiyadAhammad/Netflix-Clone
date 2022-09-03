@@ -19,16 +19,10 @@ class VideoWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: kradius10,
             image: DecorationImage(
-                image: NetworkImage(
-                  videoImage,
-                  // 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg',
-                ),
-                fit: BoxFit.cover),
+              image: NetworkImage(videoImage),
+              fit: BoxFit.cover,
+            ),
           ),
-          // child: Image.network(
-          //   'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg',
-          //   fit: BoxFit.cover,
-          // ),
         ),
         Positioned(
           // left: 0,
