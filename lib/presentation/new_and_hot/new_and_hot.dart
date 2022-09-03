@@ -116,43 +116,54 @@ class ComingSonnWidgte extends StatelessWidget {
         const LoadDatainComingSoon(),
       );
     });
-    return BlocBuilder<HotandNewBloc, HotandNewState>(
-      builder: (context, state) {
-        if (state.isError) {
-          return const Center(
-            child: Text('Error While Fetching'),
-          );
-        } else if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          );
-        } else if (state.comingSoonList.isEmpty) {
-          return const Center(
-            child: Text('List is Empty'),
-          );
-        } else {
-          return ListView.builder(
-            itemCount: state.comingSoonList.length,
-            itemBuilder: (BuildContext context, int index) {
-              final movie = state.comingSoonList[index];
-              if (movie.id == null) {
-                return const SizedBox();
-              }
-              final date = DateTime.parse(movie.releaseDate!);
-              final formatedDate = DateFormat.yMMMMd('en_US').format(date);
-              return ComingSoonTab(
-                id: movie.id.toString(),
-                month:
-                    formatedDate.split(' ').first.substring(0, 3).toUpperCase(),
-                day: movie.releaseDate!.split('-')[1],
-                filmName: movie.originalTitle ?? 'No Title',
-                posterPath: '$kImageURL${movie.posterPath}',
-                description: movie.overview ?? ' No Description',
-              );
-            },
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        BlocProvider.of<HotandNewBloc>(context).add(
+          const LoadDatainComingSoon(),
+        );
       },
+      child: BlocBuilder<HotandNewBloc, HotandNewState>(
+        builder: (context, state) {
+          if (state.isError) {
+            return const Center(
+              child: Text('Error While Fetching'),
+            );
+          } else if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            );
+          } else if (state.comingSoonList.isEmpty) {
+            return const Center(
+              child: Text('List is Empty'),
+            );
+          } else {
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 10),
+              itemCount: state.comingSoonList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final movie = state.comingSoonList[index];
+                if (movie.id == null) {
+                  return const SizedBox();
+                }
+                final date = DateTime.parse(movie.releaseDate!);
+                final formatedDate = DateFormat.yMMMMd('en_US').format(date);
+                return ComingSoonTab(
+                  id: movie.id.toString(),
+                  month: formatedDate
+                      .split(' ')
+                      .first
+                      .substring(0, 3)
+                      .toUpperCase(),
+                  day: movie.releaseDate!.split('-')[1],
+                  filmName: movie.originalTitle ?? 'No Title',
+                  posterPath: '$kImageURL${movie.posterPath}',
+                  description: movie.overview ?? ' No Description',
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -167,40 +178,47 @@ class EveryOneWatchingWidget extends StatelessWidget {
         const LoadDatainEveryOneWatching(),
       );
     });
-    return BlocBuilder<HotandNewBloc, HotandNewState>(
-      builder: (context, state) {
-        if (state.isError) {
-          return const Center(
-            child: Text('Error While Fetching'),
-          );
-        } else if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          );
-        } else if (state.everyOneIsWatching.isEmpty) {
-          return const Center(
-            child: Text('List is Empty'),
-          );
-        } else {
-          return ListView.builder(
-            padding: const EdgeInsets.all(10),
-            itemCount: state.everyOneIsWatching.length,
-            itemBuilder: (context, index) {
-              final eMovies = state.everyOneIsWatching[index];
-              if (eMovies.id == null) {
-                return const SizedBox();
-              }
-              // log(eMovies.originalTitle.toString());
-              // log(eMovies.title.toString());
-              return EveryoneWatchingTab(
-                filmName: eMovies.tvTitle ?? 'No Title ',
-                posterPath: '$kImageURL${eMovies.posterPath}',
-                description: eMovies.overview ?? 'No Description',
-              );
-            },
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        BlocProvider.of<HotandNewBloc>(context).add(
+          const LoadDatainEveryOneWatching(),
+        );
       },
+      child: BlocBuilder<HotandNewBloc, HotandNewState>(
+        builder: (context, state) {
+          if (state.isError) {
+            return const Center(
+              child: Text('Error While Fetching'),
+            );
+          } else if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            );
+          } else if (state.everyOneIsWatching.isEmpty) {
+            return const Center(
+              child: Text('List is Empty'),
+            );
+          } else {
+            return ListView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: state.everyOneIsWatching.length,
+              itemBuilder: (context, index) {
+                final eMovies = state.everyOneIsWatching[index];
+                if (eMovies.id == null) {
+                  return const SizedBox();
+                }
+                // log(eMovies.originalTitle.toString());
+                // log(eMovies.title.toString());
+                return EveryoneWatchingTab(
+                  filmName: eMovies.tvTitle ?? 'No Title ',
+                  posterPath: '$kImageURL${eMovies.posterPath}',
+                  description: eMovies.overview ?? 'No Description',
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }

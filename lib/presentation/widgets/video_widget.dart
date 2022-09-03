@@ -13,16 +13,41 @@ class VideoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 200,
-          decoration: BoxDecoration(
-            borderRadius: kradius10,
-            image: DecorationImage(
-              image: NetworkImage(videoImage),
-              fit: BoxFit.cover,
-            ),
+          child: Image.network(
+            videoImage,
+            fit: BoxFit.cover,
+            loadingBuilder:
+                (BuildContext _, Widget child, ImageChunkEvent? progress) {
+              if (progress == null) {
+                return child;
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                );
+              }
+            },
+            errorBuilder: (BuildContext _, Object child, StackTrace? trace) {
+              return const Center(
+                child: Icon(
+                  Icons.wifi_off,
+                  color: kwhite,
+                ),
+              );
+            },
           ),
+          // decoration: BoxDecoration(
+          //   borderRadius: kradius10,
+          //   image: DecorationImage(
+          //     image: NetworkImage(videoImage),
+          //     fit: BoxFit.cover,
+
+          //   ),
+          // ),
         ),
         Positioned(
           // left: 0,
