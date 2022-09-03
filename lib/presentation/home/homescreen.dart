@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/home/home_bloc.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/home/widgets/number_card_tile.dart';
@@ -12,6 +14,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(
+        const GetHomeScreenData(),
+      );
+    });
     return Scaffold(
       body: ValueListenableBuilder(
         valueListenable: scrollNotifier,

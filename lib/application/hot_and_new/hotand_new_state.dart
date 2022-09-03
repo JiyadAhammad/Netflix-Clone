@@ -6,7 +6,7 @@ class HotandNewState with _$HotandNewState {
     required List<HotAndNewData> comingSoonList,
     required List<HotAndNewData> everyOneIsWatching,
     required bool isLoading,
-    required bool isError
+    required bool isError,
   }) = _Initial;
   factory HotandNewState.initial() => const HotandNewState(
         comingSoonList: [],
