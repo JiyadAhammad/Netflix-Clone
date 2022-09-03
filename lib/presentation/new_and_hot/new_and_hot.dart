@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:netflix/application/hot_and_new/hotand_new_bloc.dart';
 import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
@@ -133,13 +134,15 @@ class ComingSonnWidgte extends StatelessWidget {
               if (movie.id == null) {
                 return const SizedBox();
               }
+              final date = DateTime.parse(movie.releaseDate!);
+              final formatedDate = DateFormat.yMMMMd('en_US').format(date);
               return ComingSoonTab(
                 id: movie.id.toString(),
-                month: 'sep',
-                day: "12",
-                filmName: movie.originalTitle??'',
+                month: formatedDate.split(' ').first.substring(0,3).toUpperCase(),
+                day: movie.releaseDate!.split('-')[1],
+                filmName: movie.originalTitle ?? 'No Title',
                 posterPath: '$kImageURL${movie.posterPath}',
-                description: movie.overview ?? '',
+                description: movie.overview ?? ' No Description',
               );
             },
           );
