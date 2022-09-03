@@ -4,8 +4,7 @@ import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/widgets/maintitle.dart';
 
-// const imgageuri =
-//     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg';
+
 
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({Key? key}) : super(key: key);

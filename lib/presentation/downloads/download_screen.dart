@@ -68,11 +68,7 @@ class _SmartDownloads extends StatelessWidget {
 
 class Section2 extends StatelessWidget {
   const Section2({Key? key}) : super(key: key);
-  // final List imgageList = [
-  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg',
-  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/stTEycfG9928HYGEISBFaG1ngjM.jpg',
-  //   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hIkKM1nlzk8DThFT4vxgW1KoofL.jpg',
-  // ];
+  
 
   @override
   Widget build(BuildContext context) {

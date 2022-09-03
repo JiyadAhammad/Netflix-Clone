@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +63,7 @@ class HotandNewScreen extends StatelessWidget {
                   text: '🍿 Coming Soon',
                 ),
                 Tab(
-                  text: '👀 Everything Watch',
+                  text: '👀 EveryOnes Watch',
                 )
               ],
             ),
@@ -194,7 +192,7 @@ class EveryOneWatchingWidget extends StatelessWidget {
               // log(eMovies.originalTitle.toString());
               // log(eMovies.title.toString());
               return EveryoneWatchingTab(
-                filmName: eMovies.originalTitle ?? 'No Title ',
+                filmName: eMovies.tvTitle ?? 'No Title ',
                 posterPath: '$kImageURL${eMovies.posterPath}',
                 description: eMovies.overview ?? 'No Description',
               );
