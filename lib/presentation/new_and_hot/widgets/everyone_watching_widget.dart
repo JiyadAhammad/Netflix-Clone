@@ -4,11 +4,11 @@ import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/home/homescreen.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
-class EveryoneWatchingWidget extends StatelessWidget {
+class EveryoneWatchingTab extends StatelessWidget {
   final String filmName;
   final String posterPath;
   final String description;
-  const EveryoneWatchingWidget({
+  const EveryoneWatchingTab({
     Key? key,
     required this.filmName,
     required this.posterPath,
@@ -22,9 +22,9 @@ class EveryoneWatchingWidget extends StatelessWidget {
       // shrinkWrap: true,
       children: [
         kheight,
-        const Text(
-          'friends',
-          style: TextStyle(
+        Text(
+          filmName,
+          style: const TextStyle(
             // letterSpacing: 1,
             color: ktextwhite,
             fontWeight: FontWeight.bold,
@@ -32,18 +32,16 @@ class EveryoneWatchingWidget extends StatelessWidget {
           ),
         ),
         kheight,
-        const Text(
-          '''Lorem Ipsum is simply dummy jerjif fjf fjjf xcjkdfv  text  of thl ovrem Ipsum hao fahjf adha hsd fk hafhfhjks dfh skl fhsdfhkah''',
-          style: TextStyle(
+        Text(
+          description,
+          style: const TextStyle(
             color: kgrey,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
         ),
         kheight50,
-        const VideoWidget(
-            videoImage:
-                'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg'),
+        VideoWidget(videoImage: posterPath),
         kheight20,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -52,21 +50,21 @@ class EveryoneWatchingWidget extends StatelessWidget {
               icon: Icons.share,
               buttonName: 'Share',
               textSize: 14,
-              iconSize: 40,
+              iconSize: 30,
             ),
             kwidth,
             IconsInHome(
               icon: Icons.add,
               buttonName: 'My List',
               textSize: 14,
-              iconSize: 40,
+              iconSize: 30,
             ),
             kwidth,
             IconsInHome(
               icon: Icons.play_arrow,
               buttonName: 'Play',
               textSize: 14,
-              iconSize: 40,
+              iconSize: 30,
             ),
             kwidth,
           ],

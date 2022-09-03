@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +9,7 @@ import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/coming_soon_tab.dart';
+import 'package:netflix/presentation/new_and_hot/widgets/everyone_watching_widget.dart';
 
 class HotandNewScreen extends StatelessWidget {
   const HotandNewScreen({Key? key}) : super(key: key);
@@ -68,13 +71,16 @@ class HotandNewScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: const TabBarView(children: [
-          ComingSonnWidgte(),
-          EveryOneWatchingWidget(),
-          // _buildEverythingWatch(),
-          // TabBarFirstScreen(),
-          // TabBarScondScreen(),
-        ]),
+        body: const TabBarView(
+          children: [
+            ComingSonnWidgte(),
+            EveryOneWatchingWidget(),
+            // _buildComingSoon(),
+            // _buildEverythingWatch(),
+            // TabBarFirstScreen(),
+            // TabBarScondScreen(),
+          ],
+        ),
       ),
     );
   }
@@ -138,7 +144,8 @@ class ComingSonnWidgte extends StatelessWidget {
               final formatedDate = DateFormat.yMMMMd('en_US').format(date);
               return ComingSoonTab(
                 id: movie.id.toString(),
-                month: formatedDate.split(' ').first.substring(0,3).toUpperCase(),
+                month:
+                    formatedDate.split(' ').first.substring(0, 3).toUpperCase(),
                 day: movie.releaseDate!.split('-')[1],
                 filmName: movie.originalTitle ?? 'No Title',
                 posterPath: '$kImageURL${movie.posterPath}',
@@ -157,6 +164,44 @@ class EveryOneWatchingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HotandNewBloc>(context).add(
+        const LoadDatainEveryOneWatching(),
+      );
+    });
+    return BlocBuilder<HotandNewBloc, HotandNewState>(
+      builder: (context, state) {
+        if (state.isError) {
+          return const Center(
+            child: Text('Error While Fetching'),
+          );
+        } else if (state.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(strokeWidth: 2),
+          );
+        } else if (state.everyOneIsWatching.isEmpty) {
+          return const Center(
+            child: Text('List is Empty'),
+          );
+        } else {
+          return ListView.builder(
+            itemCount: state.everyOneIsWatching.length,
+            itemBuilder: (context, index) {
+              final eMovies = state.everyOneIsWatching[index];
+              if (eMovies.id == null) {
+                return const SizedBox();
+              }
+              // log(eMovies.originalTitle.toString());
+              // log(eMovies.title.toString());
+              return EveryoneWatchingTab(
+                filmName: eMovies.originalTitle ?? 'No Title ',
+                posterPath: '$kImageURL${eMovies.posterPath}',
+                description: eMovies.overview ?? 'No Description',
+              );
+            },
+          );
+        }
+      },
+    );
   }
 }
