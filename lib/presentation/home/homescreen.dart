@@ -74,20 +74,24 @@ class HomeScreen extends StatelessWidget {
                       return '$kImageURL${toptv.posterPath}';
                     }).toList();
                     // topList.shuffle();
+                    final backgorundImage = state.trendinNow.first;
                     return ListView(
                       children: [
                         Stack(
                           children: [
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               height: 600,
                               // color: Colors.green,
-                              decoration: const BoxDecoration(
-                                color: Colors.lightBlue,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage('asset/image/peak.jpg'),
-                                ),
+                              // decoration: const BoxDecoration(
+                              //   color: Colors.lightBlue,
+                              //   image: DecorationImage(
+                              //     fit: BoxFit.cover,
+                              //     image: AssetImage(),
+                              //   ),
+                              // ),
+                              child: Image.network(
+                                '$kImageURL${backgorundImage.posterPath}',
                               ),
                             ),
                             Positioned(
