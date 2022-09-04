@@ -4,8 +4,10 @@ import '../../widgets/maintitle.dart';
 import 'number_card.dart';
 
 class NumbeCard extends StatelessWidget {
+  final List<String> posterList;
   const NumbeCard({
     Key? key,
+    required this.posterList,
   }) : super(key: key);
 
   @override
@@ -23,9 +25,10 @@ class NumbeCard extends StatelessWidget {
             // padding: EdgeInsets.symmetric(horizontal: 10),
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
+              posterList.length,
               (index) => NumberCardWidget(
                 index: index,
+                topImageUrl: posterList[index],
               ),
             ),
           ),

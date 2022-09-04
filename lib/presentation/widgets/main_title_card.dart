@@ -4,9 +4,11 @@ import 'main_card.dart';
 
 class MainCardTile extends StatelessWidget {
   final String cardTitle;
+  final List<String> posterList;
   const MainCardTile({
     Key? key,
     required this.cardTitle,
+    required this.posterList,
   }) : super(key: key);
 
   @override
@@ -24,8 +26,10 @@ class MainCardTile extends StatelessWidget {
             // padding: EdgeInsets.symmetric(horizontal: 10),
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
-              (index) => const MainCard(),
+              posterList.length,
+              (index) => MainCard(
+                imageUrl: posterList[index],
+              ),
             ),
           ),
         ),

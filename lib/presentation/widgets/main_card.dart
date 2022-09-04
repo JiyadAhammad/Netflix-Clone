@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 
 class MainCard extends StatelessWidget {
+  final String imageUrl;
   const MainCard({
     Key? key,
+    required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -15,9 +17,9 @@ class MainCard extends StatelessWidget {
       width: 130,
       // color: Colors.green,
       decoration: BoxDecoration(
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(
-            'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3H1WFCuxyNRP35oiL2qqwhAXxc0.jpg',
+            imageUrl,
           ),
           fit: BoxFit.cover,
         ),

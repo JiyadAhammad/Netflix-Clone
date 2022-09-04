@@ -24,7 +24,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final tvResult = await iHomeRepo.getHotsndNewTvData();
       final stateone = movieResult.fold(
         (MainFailure failure) {
-          return const HomeState(
+          return HomeState(
+            stateId: DateTime.now().millisecondsSinceEpoch.toString(),
             pastyearMovie: [],
             trendinNow: [],
             tenseDrama: [],
@@ -46,6 +47,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           southIndianMovie.shuffle();
 
           return HomeState(
+            stateId: DateTime.now().millisecondsSinceEpoch.toString(),
             pastyearMovie: pastYear,
             trendinNow: trending,
             tenseDrama: tenseDramaovie,
@@ -60,7 +62,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final statetwo = tvResult.fold(
         (MainFailure failure) {
-          return const HomeState(
+          return HomeState(
+            stateId: DateTime.now().millisecondsSinceEpoch.toString(),
             pastyearMovie: [],
             trendinNow: [],
             tenseDrama: [],
@@ -73,6 +76,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (HotAndNew resp) {
           final topTen = resp.results;
           return HomeState(
+            stateId: DateTime.now().millisecondsSinceEpoch.toString(),
             pastyearMovie: state.pastyearMovie,
             trendinNow: state.trendinNow,
             tenseDrama: state.tenseDrama,

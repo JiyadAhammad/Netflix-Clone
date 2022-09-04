@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/home/home_bloc.dart';
+import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/home/widgets/number_card_tile.dart';
@@ -35,54 +38,107 @@ class HomeScreen extends StatelessWidget {
             },
             child: Stack(
               children: [
-                ListView(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          height: 600,
-                          // color: Colors.green,
-                          decoration: const BoxDecoration(
-                            color: Colors.lightBlue,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('asset/image/peak.jpg'),
-                            ),
-                          ),
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state.isLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
                         ),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const IconsInHome(
-                                icon: Icons.add,
-                                buttonName: 'My List',
+                      );
+                    } else if (state.isError) {
+                      return const Center(
+                        child: Text(
+                          "Somethng Error",
+                          style: TextStyle(color: kwhite),
+                        ),
+                      );
+                    }
+                    final pastYear = state.pastyearMovie.map((movie) {
+                      return '$kImageURL${movie.posterPath}';
+                    }).toList();
+                    final trenNow = state.trendinNow.map((movie) {
+                      return '$kImageURL${movie.posterPath}';
+                    }).toList();
+                    trenNow.shuffle();
+                    final tensDrama = state.tenseDrama.map((movie) {
+                      return '$kImageURL${movie.posterPath}';
+                    }).toList();
+                    tensDrama.shuffle();
+                    final southMovie = state.southIndian.map((movie) {
+                      return '$kImageURL${movie.posterPath}';
+                    }).toList();
+                    southMovie.shuffle();
+                    // log('${state.trendingTvList.length}');
+                    final topList = state.trendingTvList.map((toptv) {
+                      return '$kImageURL${toptv.posterPath}';
+                    }).toList();
+                    // topList.shuffle();
+                    return ListView(
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 600,
+                              // color: Colors.green,
+                              decoration: const BoxDecoration(
+                                color: Colors.lightBlue,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('asset/image/peak.jpg'),
+                                ),
                               ),
-                              _stackIconHomeScreen(),
-                              const IconsInHome(
-                                icon: Icons.info,
-                                buttonName: 'Info',
+                            ),
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 20,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const IconsInHome(
+                                    icon: Icons.add,
+                                    buttonName: 'My List',
+                                  ),
+                                  _stackIconHomeScreen(),
+                                  const IconsInHome(
+                                    icon: Icons.info,
+                                    buttonName: 'Info',
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        )
+                            )
+                          ],
+                        ),
+                        kheight,
+                        MainCardTile(
+                          cardTitle: 'Released in the past year',
+                          posterList: pastYear,
+                        ),
+                        kheight,
+                        MainCardTile(
+                          cardTitle: 'Trending Now',
+                          posterList: trenNow,
+                        ),
+                        kheight,
+                        NumbeCard(
+                          posterList: topList,
+                        ),
+                        kheight,
+                        MainCardTile(
+                          cardTitle: 'Tense Dramas',
+                          posterList: tensDrama,
+                        ),
+                        kheight,
+                        MainCardTile(
+                          cardTitle: 'South Indian Cinema',
+                          posterList: southMovie,
+                        ),
                       ],
-                    ),
-                    kheight,
-                    const MainCardTile(cardTitle: 'Released in the past year'),
-                    kheight,
-                    const MainCardTile(cardTitle: 'Trending Now'),
-                    kheight,
-                    const NumbeCard(),
-                    kheight,
-                    const MainCardTile(cardTitle: 'Tense Dramas'),
-                    kheight,
-                    const MainCardTile(cardTitle: 'South Indian Cinema'),
-                  ],
+                    );
+                  },
                 ),
                 scrollNotifier.value == true
                     ? AnimatedContainer(
