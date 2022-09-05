@@ -1,6 +1,3 @@
-import 'dart:developer';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,14 +93,13 @@ class HomeScreen extends StatelessWidget {
                               //     image: AssetImage(),
                               //   ),
                               // ),
-                              child: FadeInImage.assetNetwork(
-                                placeholder: '',
-                                image:
-                                    '$kImageURL${state.trendingTvList[0].posterPath}',
-                              ),
-                              // child: Image.network(
-                              //   '$kImageURL${state.trendingTvList[1].posterPath}',
+                              // child: FadeInImage.assetNetwork(
+                              //   placeholder: '',
+                              //   image: backImageHome,
                               // ),
+                              child: Image.network(
+                                backImageHome,
+                              ),
                             ),
                             Positioned(
                               left: 0,

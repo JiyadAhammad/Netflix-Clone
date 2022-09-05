@@ -8,6 +8,8 @@ import 'package:netflix/domain/debounce/debounce.dart';
 import 'package:netflix/presentation/search/widgets/search_result.dart';
 import 'package:netflix/presentation/search/widgets/serach_idle.dart';
 
+final searchResult = TextEditingController();
+
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
 
@@ -28,6 +30,7 @@ class SearchScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CupertinoSearchTextField(
+                controller: searchResult,
                 placeholder: 'Search',
                 backgroundColor: Colors.grey.withOpacity(0.4),
                 prefixIcon: const Icon(

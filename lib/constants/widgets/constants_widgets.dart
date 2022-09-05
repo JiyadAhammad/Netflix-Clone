@@ -11,3 +11,5 @@ final BorderRadius kradius10 = BorderRadius.circular(10);
 final BorderRadius kradius30 = BorderRadius.circular(30);
 
 // const  imageHome = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vUUqzWa2LnHIVqkaKVlVGkVcZI';
+const backImageHome =
+    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/z2yahl2uefxDCl0nogcRBstwruJ.jpg';
