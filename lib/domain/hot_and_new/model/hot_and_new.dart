@@ -12,7 +12,7 @@ class HotAndNew {
 
   HotAndNew({
     this.page,
-    this.results =const[],
+    this.results = const [],
   });
 
   factory HotAndNew.fromJson(Map<String, dynamic> json) {

@@ -16,7 +16,9 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<SearchBloc>(context).add(const Initialize());
+      BlocProvider.of<SearchBloc>(context).add(
+        const Initialize(),
+      );
     });
     return Scaffold(
       body: SafeArea(
@@ -39,7 +41,6 @@ class SearchScreen extends StatelessWidget {
                 style: const TextStyle(color: ktextwhite),
                 onChanged: (value) {
                   if (value.isEmpty) {
-                    // return const SearchIdleWidgets();
                     return;
                   }
                   _debouncer.run(() {
@@ -52,16 +53,24 @@ class SearchScreen extends StatelessWidget {
                 },
               ),
               kheight20,
-              Expanded(child: BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  if (state.searchResultList.isEmpty) {
-                    return const SearchIdleWidgets();
-                  } else {
-                    return const SearchResultWidget();
-                  }
-                },
-              )),
-              // const Expanded(child: SearchResultWidget()),
+              Expanded(
+                // child: BlocBuilder<SearchBloc, SearchState>(
+                //     builder: (context, state) {
+                //   state.searchResultList.isEmpty
+                //       ? const SearchIdleWidgets()
+                //       : const SearchResultWidget();
+                //   return const SearchIdleWidgets();
+                // }),
+                child: BlocBuilder<SearchBloc, SearchState>(
+                  builder: (context, state) {
+                    if (state.searchResultList.isEmpty) {
+                      return const SearchIdleWidgets();
+                    } else {
+                      return const SearchResultWidget();
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),

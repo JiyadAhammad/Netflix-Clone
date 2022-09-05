@@ -28,7 +28,7 @@ class HotAndNewRepository implements IHotAndNewRepo {
   }
 
   @override
-  Future<Either<MainFailure, HotAndNew>> getHotsndNewTvData() async{
+  Future<Either<MainFailure, HotAndNew>> getHotsndNewTvData() async {
     try {
       final Response response =
           await Dio(BaseOptions()).get(ApiEndPoints.hotandnewTv);

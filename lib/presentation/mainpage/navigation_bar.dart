@@ -9,7 +9,7 @@ import 'package:netflix/presentation/search/search.dart';
 class NavigatonBarScreen extends StatelessWidget {
   NavigatonBarScreen({Key? key}) : super(key: key);
   final pages = [
-    const HomeScreen(),
+    HomeScreen(),
     const HotandNewScreen(),
     const FastLaughScreen(),
     SearchScreen(),

@@ -9,3 +9,4 @@ const kwhite = Colors.white;
 const kgrey = Colors.grey;
 final kbtnblue = Colors.blue[700];
 const kbtnwhite = Colors.white;
+const ktransperant = Colors.transparent;

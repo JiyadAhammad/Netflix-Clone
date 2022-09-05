@@ -93,7 +93,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           (SearchResp r) {
             return SearchState(
               searchResultList: r.results,
-              ideLisst: [],
+              ideLisst: state.ideLisst,
               isLodinng: false,
               isError: false,
             );

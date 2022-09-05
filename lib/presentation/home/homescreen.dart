@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,12 +9,14 @@ import 'package:netflix/constants/baseurl/base_url.dart';
 import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/home/widgets/number_card_tile.dart';
+import 'package:netflix/presentation/widgets/drop_down_list.dart';
 import '../widgets/main_title_card.dart';
 
 ValueNotifier scrollNotifier = ValueNotifier(true);
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  String dropdownvalue = 'Item 1';
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +77,10 @@ class HomeScreen extends StatelessWidget {
                       return '$kImageURL${toptv.posterPath}';
                     }).toList();
                     // topList.shuffle();
-                    final backgorundImage = state.trendinNow.first;
+                    // final backgorundImage = state.trendingTvList;
+                    //  final backgorundImage = state.trendingTvList.map((toptv) {
+                    //   return '$kImageURL${toptv.posterPath}';
+                    // }).toList();
                     return ListView(
                       children: [
                         Stack(
@@ -90,9 +96,14 @@ class HomeScreen extends StatelessWidget {
                               //     image: AssetImage(),
                               //   ),
                               // ),
-                              child: Image.network(
-                                '$kImageURL${backgorundImage.posterPath}',
+                              child: FadeInImage.assetNetwork(
+                                placeholder: '',
+                                image:
+                                    '$kImageURL${state.trendingTvList[0].posterPath}',
                               ),
+                              // child: Image.network(
+                              //   '$kImageURL${state.trendingTvList[1].posterPath}',
+                              // ),
                             ),
                             Positioned(
                               left: 0,
@@ -150,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                           milliseconds: 1000,
                         ),
                         width: double.infinity,
-                        height: 90,
+                        height: 110,
                         color: Colors.black.withOpacity(0.2),
                         child: Column(
                           children: [
@@ -179,30 +190,50 @@ class HomeScreen extends StatelessWidget {
                                 kwidth,
                               ],
                             ),
-                            kheight,
+                            // kheight,
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                   "Tv Shows",
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   "Movies",
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
-                                  "Categories",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Row(
+                                  children: [
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return const DropDownListWidget();
+                                          },
+                                        );
+                                      },
+                                      label: const Icon(
+                                        Icons.arrow_drop_down,
+                                        color: kwhite,
+                                      ),
+                                      icon: const Text(
+                                        "Categories",
+                                        style: TextStyle(
+                                          color: kwhite,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      // icon: const Icon(Icons.arrow_drop_down),
+                                    ),
+                                  ],
                                 ),
                               ],
                             )

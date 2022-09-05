@@ -68,7 +68,6 @@ class _SmartDownloads extends StatelessWidget {
 
 class Section2 extends StatelessWidget {
   const Section2({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
