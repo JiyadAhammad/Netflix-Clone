@@ -35,7 +35,13 @@ class WidgetAppBar extends StatelessWidget {
         Container(
           height: 30,
           width: 30,
-          color: Colors.lightBlue,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'asset/image/ntflixAvat.jpg',
+              ),
+            ),
+          ),
         ),
         kwidth,
       ],
