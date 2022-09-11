@@ -3,6 +3,7 @@ import 'package:netflix/constants/colors/colors.dart';
 import 'package:netflix/constants/widgets/constants_widgets.dart';
 import 'package:netflix/presentation/home/homescreen.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
+import 'package:sticky_headers/sticky_headers/widget.dart';
 
 class ComingSoonTab extends StatelessWidget {
   final String id;
@@ -27,10 +28,8 @@ class ComingSoonTab extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return Row(
       children: [
-        SizedBox(
-          width: 60,
-          height: 500,
-          child: Column(
+        StickyHeader(
+          header: Column(
             children: [
               Text(
                 month,
@@ -49,6 +48,10 @@ class ComingSoonTab extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          content: const SizedBox(
+            height: 450,
+            width: 60,
           ),
         ),
         SizedBox(
