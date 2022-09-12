@@ -24,6 +24,8 @@ class EveryoneWatchingTab extends StatelessWidget {
         kheight,
         Text(
           filmName,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             // letterSpacing: 1,
             color: ktextwhite,

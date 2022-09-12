@@ -66,6 +66,7 @@ class SearchScreen extends StatelessWidget {
                 // }),
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
+                    // ignore: unnecessary_null_comparison
                     if (state.searchResultList.isEmpty) {
                       return const SearchIdleWidgets();
                     } else {

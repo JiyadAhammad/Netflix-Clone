@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -81,6 +82,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         final result =
             await _iSearchRepo.searchMovies(movieQuery: event.movieQuery);
         // print('$result search reslt ');
+        // ignore: no_leading_underscores_for_local_identifiers
         final _state = result.fold(
           (MainFailure f) {
             return const SearchState(

@@ -51,11 +51,11 @@ class ComingSoonTab extends StatelessWidget {
           ),
           content: const SizedBox(
             height: 450,
-            width: 60,
+            width: 50,
           ),
         ),
         SizedBox(
-          width: size.width - 60,
+          width: size.width - 50,
           // width: double.infinity,
           height: 500,
           child: Column(

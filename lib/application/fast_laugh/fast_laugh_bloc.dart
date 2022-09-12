@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -36,7 +37,9 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
           isError: false,
         ),
       );
+      // ignore: no_leading_underscores_for_local_identifiers
       final _result = await iDownloadRepo.getDownloadsImage();
+      // ignore: no_leading_underscores_for_local_identifiers
       final _state = _result.fold((MainFailure f) {
         return const FastLaughState(
           videosList: [],

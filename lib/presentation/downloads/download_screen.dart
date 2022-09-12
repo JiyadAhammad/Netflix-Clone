@@ -104,6 +104,17 @@ class Section2 extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
+            if (state.downloadsFailureorSucessOption.isNone()) {
+              return Center(
+                child: Column(
+                  children: const [
+                    Text('Something error'),
+                    kwidth20,
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              );
+            }
             final firstImage = state.downloads[2];
             final secondImage = state.downloads[1];
             final thirdImage = state.downloads[0];
