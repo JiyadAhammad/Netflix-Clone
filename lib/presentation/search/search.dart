@@ -9,6 +9,7 @@ import 'package:netflix/presentation/search/widgets/search_result.dart';
 import 'package:netflix/presentation/search/widgets/serach_idle.dart';
 
 final searchResult = TextEditingController();
+ValueNotifier<bool> serachValueNotifier = ValueNotifier(true);
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
@@ -29,62 +30,69 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CupertinoSearchTextField(
-                controller: searchResult,
-                placeholder: 'Search',
-                backgroundColor: Colors.grey.withOpacity(0.4),
-                prefixIcon: const Icon(
-                  CupertinoIcons.search,
-                  color: kgrey,
-                ),
-                suffixIcon: const Icon(
-                  CupertinoIcons.xmark_circle_fill,
-                  color: kgrey,
-                ),
-//                 onSuffixTap: (){
-//                   Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-// return SearchIdleWidgets();
-//                   }));
-                // },
-                style: const TextStyle(color: ktextwhite),
-                onChanged: (value) {
-                  // if (searchResult.text.isEmpty) {
-                  //   SearchIdleWidgets();
-                  // }
-                  if (value.isEmpty) {
-                    return;
-                  } else {
-                    _debouncer.run(() {
-                      BlocProvider.of<SearchBloc>(context).add(
-                        SearchMovie(
-                          movieQuery: value,
-                        ),
-                      );
-                    });
-                  }
-                },
-              ),
+              ValueListenableBuilder(
+                  valueListenable: serachValueNotifier,
+                  builder: (context, bool search, _) {
+                    return CupertinoSearchTextField(
+                      controller: searchResult,
+                      placeholder: 'Search',
+                      backgroundColor: Colors.grey.withOpacity(0.4),
+                      prefixIcon: const Icon(
+                        CupertinoIcons.search,
+                        color: kgrey,
+                      ),
+                      suffixIcon: const Icon(
+                        CupertinoIcons.xmark_circle_fill,
+                        color: kgrey,
+                      ),
+                      style: const TextStyle(color: ktextwhite),
+                      onChanged: (value) {
+                        // if (searchResult.text.isEmpty) {
+                        //   SearchIdleWidgets();
+                        // }
+                        if (value.isEmpty) {
+                          const Center(
+                            child: Text('No Data Found'),
+                          );
+                        }
+                        if (value.isNotEmpty) {
+                          _debouncer.run(() {
+                            BlocProvider.of<SearchBloc>(context).add(
+                              SearchMovie(
+                                movieQuery: value,
+                              ),
+                            );
+                          });
+                          search = false;
+                          serachValueNotifier.value = search;
+                        } else if (searchResult.text.isEmpty) {
+                          search = true;
+                          serachValueNotifier.value = search;
+                        }
+                      },
+                    );
+                  }),
               kheight20,
-              Expanded(
-                // child: BlocBuilder<SearchBloc, SearchState>(
-                //     builder: (context, state) {
-                //   state.searchResultList.isEmpty
-                //       ? const SearchIdleWidgets()
-                //       : const SearchResultWidget();
-                //   return const SearchIdleWidgets();
-                // }),
-                child: BlocBuilder<SearchBloc, SearchState>(
-                  builder: (context, state) {
-                    // ignore: unnecessary_null_comparison
-                    if (state.searchResultList.isEmpty ||
-                        searchResult.text.isEmpty) {
-                      return const SearchIdleWidgets();
-                    } else {
-                      return const SearchResultWidget();
-                    }
-                  },
-                ),
-              ),
+              ValueListenableBuilder(
+                  valueListenable: serachValueNotifier,
+                  builder: (context, bool search, _) {
+                    return Expanded(
+                      child: BlocBuilder<SearchBloc, SearchState>(
+                        builder: (context, state) {
+                          // ignore: unnecessary_null_comparison
+                          if (serachValueNotifier.value) {
+                            return const SearchIdleWidgets();
+                          } else if (state.searchResultList.isNotEmpty) {
+                            return const SearchResultWidget();
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
+                    );
+                  }),
             ],
           ),
         ),

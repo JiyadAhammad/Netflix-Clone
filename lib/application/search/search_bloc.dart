@@ -23,14 +23,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     // >>>idle state<<<
     on<Initialize>((event, emit) async {
       if (state.ideLisst.isNotEmpty) {
-        emit(
-          SearchState(
-            searchResultList: [],
-            ideLisst: state.ideLisst,
-            isLodinng: false,
-            isError: false,
-          ),
-        );
+        emit(state);
+        // emit(
+        //   SearchState(
+        //     searchResultList: [],
+        //     ideLisst: state.ideLisst,
+        //     isLodinng: false,
+        //     isError: false,
+        //   ),
+        // );
         return;
       }
       emit(
@@ -43,28 +44,25 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       );
       //>>> get trending <<<
       final result = await _iDownloadRepo.getDownloadsImage();
-      result.fold(
+      final resultState = result.fold(
         (MainFailure failure) {
-          emit(
-            const SearchState(
-              searchResultList: [],
-              ideLisst: [],
-              isLodinng: false,
-              isError: true,
-            ),
+          return const SearchState(
+            searchResultList: [],
+            ideLisst: [],
+            isLodinng: false,
+            isError: true,
           );
         },
         (List<Downloads> list) {
-          emit(
-            SearchState(
-              searchResultList: [],
-              ideLisst: list,
-              isLodinng: false,
-              isError: false,
-            ),
+          return SearchState(
+            searchResultList: [],
+            ideLisst: list,
+            isLodinng: false,
+            isError: false,
           );
         },
       );
+      emit(resultState);
     });
     // >>>Search result state<<<
     on<SearchMovie>(
@@ -72,9 +70,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         //>>> serach api call <<<
         // log('${event.movieQuery}');
         emit(
-          const SearchState(
+          SearchState(
             searchResultList: [],
-            ideLisst: [],
+            ideLisst: state.ideLisst,
             isLodinng: true,
             isError: false,
           ),
