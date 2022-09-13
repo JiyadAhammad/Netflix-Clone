@@ -85,9 +85,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         // ignore: no_leading_underscores_for_local_identifiers
         final _state = result.fold(
           (MainFailure f) {
-            return const SearchState(
+            return SearchState(
               searchResultList: [],
-              ideLisst: [],
+              ideLisst: state.ideLisst,
               isLodinng: false,
               isError: true,
             );

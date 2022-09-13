@@ -77,43 +77,41 @@ class ComingSoonTab extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // IconButton(
-                  //   onPressed: () {},
-                  //   icon: const Icon(
-                  //     Icons.notification_important,
-                  //     color: kwhite,
-                  //   ),
-                  // ),
-                  // IconButton(
-                  //   onPressed: () {},
-                  //   icon: const Icon(
-                  //     Icons.info,
-                  //     color: kwhite,
-                  //   ),
-                  // ),
-                ],
-              ),
-              kheight,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  IconsInHome(
+                  const IconsInHome(
                     icon: Icons.notification_important,
                     buttonName: 'Remind me',
                     iconSize: 25,
                     textSize: 12,
                   ),
                   kwidth,
-                  IconsInHome(
+                  const IconsInHome(
                     icon: Icons.info,
                     buttonName: 'Info',
                     iconSize: 25,
                     textSize: 12,
                   ),
-                  kwidth20,
                 ],
               ),
+              // kheight,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: const [
+              //     IconsInHome(
+              //       icon: Icons.notification_important,
+              //       buttonName: 'Remind me',
+              //       iconSize: 25,
+              //       textSize: 12,
+              //     ),
+              //     kwidth,
+              //     IconsInHome(
+              //       icon: Icons.info,
+              //       buttonName: 'Info',
+              //       iconSize: 25,
+              //       textSize: 12,
+              //     ),
+              //     kwidth20,
+              //   ],
+              // ),
               kheight20,
               Align(
                 alignment: Alignment.topLeft,

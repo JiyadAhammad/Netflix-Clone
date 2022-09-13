@@ -41,18 +41,27 @@ class SearchScreen extends StatelessWidget {
                   CupertinoIcons.xmark_circle_fill,
                   color: kgrey,
                 ),
+//                 onSuffixTap: (){
+//                   Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+// return SearchIdleWidgets();
+//                   }));
+                // },
                 style: const TextStyle(color: ktextwhite),
                 onChanged: (value) {
+                  // if (searchResult.text.isEmpty) {
+                  //   SearchIdleWidgets();
+                  // }
                   if (value.isEmpty) {
                     return;
+                  } else {
+                    _debouncer.run(() {
+                      BlocProvider.of<SearchBloc>(context).add(
+                        SearchMovie(
+                          movieQuery: value,
+                        ),
+                      );
+                    });
                   }
-                  _debouncer.run(() {
-                    BlocProvider.of<SearchBloc>(context).add(
-                      SearchMovie(
-                        movieQuery: value,
-                      ),
-                    );
-                  });
                 },
               ),
               kheight20,
@@ -67,7 +76,8 @@ class SearchScreen extends StatelessWidget {
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                     // ignore: unnecessary_null_comparison
-                    if (state.searchResultList.isEmpty) {
+                    if (state.searchResultList.isEmpty ||
+                        searchResult.text.isEmpty) {
                       return const SearchIdleWidgets();
                     } else {
                       return const SearchResultWidget();

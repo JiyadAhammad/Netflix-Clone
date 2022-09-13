@@ -12,6 +12,14 @@ class SearchIdleWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   BlocProvider.of<SearchBloc>(context).add(
+    //     const Initialize(),
+    //   );
+    // });
+    BlocProvider.of<SearchBloc>(context).add(
+      const Initialize(),
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
