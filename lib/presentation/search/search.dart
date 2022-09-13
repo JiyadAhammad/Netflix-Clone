@@ -50,11 +50,11 @@ class SearchScreen extends StatelessWidget {
                         // if (searchResult.text.isEmpty) {
                         //   SearchIdleWidgets();
                         // }
-                        if (value.isEmpty) {
-                          const Center(
-                            child: Text('No Data Found'),
-                          );
-                        }
+                        // if (value.isEmpty) {
+                        //   const Center(
+                        //     child: Text('No Data Found'),
+                        //   );
+                        // }
                         if (value.isNotEmpty) {
                           _debouncer.run(() {
                             BlocProvider.of<SearchBloc>(context).add(

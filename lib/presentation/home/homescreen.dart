@@ -261,7 +261,7 @@ class HomeScreen extends StatelessWidget {
         size: 30,
       ),
       label: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 5),
         child: Text(
           'Play',
           style: TextStyle(
