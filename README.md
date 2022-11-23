@@ -1,5 +1,3 @@
-# netflix
-
 # Netflix Clone
 
 ## Getting Started
