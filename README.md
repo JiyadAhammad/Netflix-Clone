@@ -1,16 +1,24 @@
 # netflix
 
-A new Flutter project.
+Netflix Clone
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Hello, connections..
 
-A few resources to get you started if this is your first Flutter project:
+I have successfully built another app using flutter. It's a clone of 'Netflix' using TMDB RestApi's . All States Are Managed by using Bloc. The difficulties I faced as a self taught developer helped me to find better solutions for my problems.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Special Thanks To Nikhil Kilivayil, Brototype , Arunima Premdas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+github Link : https://lnkd.in/dsburfQc
+
+Technology Used:-
+- Flutter
+- Dart
+- Rest Api (TMDB)
+
+Packages:-
+- Bloc
+- Freezed
+- Build_Runner
