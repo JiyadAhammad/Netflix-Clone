@@ -8,8 +8,6 @@ Hello, connections..
 
 I have successfully built another app using flutter. It's a clone of 'Netflix' using TMDB RestApi's . All States Are Managed by using Bloc. The difficulties I faced as a self taught developer helped me to find better solutions for my problems.
 
-Special Thanks To Nikhil Kilivayil, Brototype , Arunima Premdas
-
 
 github Link : https://lnkd.in/dsburfQc
 
