@@ -1,20 +1,38 @@
 # Netflix Clone
 
-## Getting Started
+Netflix Application Using RestApi.
 
-Hello, connections..
+## Installation
 
-I have successfully built another app using flutter. It's a clone of 'Netflix' using TMDB RestApi's . All States Are Managed by using Bloc. The difficulties I faced as a self taught developer helped me to find better solutions for my problems.
+ [Not Deployed](#) .
 
+```bash
+RESTAPI
+```
 
-github Link : https://lnkd.in/dsburfQc
+## Features
 
-Technology Used:-
-- Flutter
-- Dart
-- Rest Api (TMDB)
+```python
+# Technology Used:-
 
-Packages:-
-- Bloc
-- Freezed
-- Build_Runner
+Flutter
+Dart
+Rest Api (TMDB)
+
+# Packages:-
+
+Bloc
+Freezed
+Build_Runner
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[Contact me](jiyadahammad74@gmail.com)
