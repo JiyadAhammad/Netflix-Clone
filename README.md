@@ -1,6 +1,6 @@
 # netflix
 
-Netflix Clone
+#Netflix Clone
 
 ## Getting Started
 
